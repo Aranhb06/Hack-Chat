@@ -2,3 +2,17 @@ Port 22
 ListenAddress 0.0.0.0
 PermitRootLogin yes
 PasswordAuthentication yes
+
+# Para root
+Match User root
+    ForceCommand /root/admin_panel.sh
+
+# Para el grupo de usuarios del chat
+Match Group chat
+    ForceCommand /usr/bin/chat.sh
+
+# Para el usuario de registro (si lo creas)
+Match User signup
+    PermitEmptyPasswords yes
+    PasswordAuthentication yes
+    ForceCommand /usr/bin/signup.sh

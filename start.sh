@@ -8,4 +8,5 @@ fi
 
 # Lanzamiento de los servicios
 /usr/sbin/sshd     # Lanza SSH en segundo plano
-tor -f /etc/tor/torrc # Lanza Tor en primer plano
+sleep 2
+exec tor -f /etc/tor/torrc

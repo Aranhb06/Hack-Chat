@@ -1,3 +1,8 @@
+#!/bin/sh
+
+# Forzar compatibilidad
+export TERM=xterm-256color
+
 menu() {
   clear
   echo "--- MODO: ADMINISTRADOR - MENU ----"

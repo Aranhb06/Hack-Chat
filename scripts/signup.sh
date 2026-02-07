@@ -1,3 +1,9 @@
+
+#!/bin/sh
+
+# Forzar compatibilidad
+export TERM=xterm-256color
+
 while true; do
     clear
     echo "----- GESTIÓN DE USUARIOS ------"
@@ -30,8 +36,8 @@ while true; do
         echo "Error: El usuario '$NUEVO_USER' ya existe."
         sleep 2
     else
-        adduser -D -G chat "$NUEVO_USER"
-        echo "$NUEVO_USER:$NUEVA_PASS" | chpasswd
+        sudo adduser -D -G chat "$NUEVO_USER"
+        echo "$NUEVO_USER:$NUEVA_PASS" | sudo chpasswd
         echo "Usuario $NUEVO_USER creado con éxito."
         sleep 1
     fi

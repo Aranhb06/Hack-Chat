@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Forzar compatibilidad
 export TERM=xterm-256color
@@ -28,8 +28,6 @@ mostrar_usuario() {
     echo "$USUARIOS" | nl -w2 -s') '
   fi
   echo "----------------------------"
-  echo ""
-
 }
 
 crear_usuario() {
@@ -114,7 +112,7 @@ while true; do
     ;;
 
     5) 
-      sh
+      bash
     ;;
 
     *)

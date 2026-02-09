@@ -1,5 +1,4 @@
-
-#!/bin/sh
+#!/bin/bash
 
 # Forzar compatibilidad
 export TERM=xterm-256color
@@ -28,8 +27,8 @@ while true; do
 
     # --- A partir de aquí empieza tu lógica de creación ---
     echo ""
-    read -p "Nombre del nuevo usuario: " NUEVO_USER
-    read -p "Contraseña para $NUEVO_USER: " NUEVA_PASS
+    read -e -p "Nombre del nuevo usuario: " NUEVO_USER
+    read -e -p "Contraseña para $NUEVO_USER: " NUEVA_PASS
 
     # Comprobación de existencia (la que añadimos antes)
     if id "$NUEVO_USER" >/dev/null 2>&1; then

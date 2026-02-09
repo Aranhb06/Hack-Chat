@@ -2,7 +2,7 @@
 echo "root:$root_password" | chpasswd
 
 # Configuracion del usuario singup (inicio)
-if [ $unlock_singup = "true" ]; then
+if [ $unlock_singup = "yes" ]; then
   passwd -u signup
 fi
 

@@ -9,6 +9,7 @@ RUN apk update && apk add --no-cache \
   tor~=0.4.8 \
   openssh~=10.2 \
   sudo=1.9.17_p2-r0 \
+  bash=5.3.3-r1 \
   ncurses=6.5_p20251123-r0
 
 # Configuracion de tor

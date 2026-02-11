@@ -7,8 +7,8 @@ if [ $unlock_singup = "yes" ]; then
 fi
 
 # Lanzamiento de los servicios
-/usr/sbin/sshd     # Lanza SSH en segundo plano
-tor -f /etc/tor/torrc &
+/usr/sbin/sshd     
+tor -f /etc/tor/torrc >/dev/null 2>&1 &
 
 # Mensaje de espera
 echo "Esperando a que la red Tor se estabilice..."
@@ -38,9 +38,10 @@ $R@i.~~ !     :   ~$$$$$B$$en:``
 ?MXT@Wx.~    :     ~"##*$$$$M~
 '
 
-echo ""
-echo "      SERVIDOR LEVANTADO        "
-echo ""
+echo '
+      SERVIDOR LEVANTADO        
+'
 echo "Link - $(cat /var/lib/tor/other_hidden_service/hostname)"
+
 # Mantener conexion activa
 tail -f /dev/null

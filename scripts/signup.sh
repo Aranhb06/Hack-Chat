@@ -3,42 +3,41 @@
 # Forzar compatibilidad
 export TERM=xterm-256color
 
-while true; do
+opciones() {
     clear
-    echo "----- GESTIÓN DE USUARIOS ------"
-    echo "¿Quieres crear un nuevo usuario?"
-    echo "0) No"
-    echo "1) Sí"
-    read -p "Opción: " CONFIRMAR
+    echo '
+  ┌──> GESTION DE USUARIOS <──┐
+  │  Para salir escriba exit  │
+  └───────────────────────────┘'
+}
 
-    # Si elige 0 (No), salimos de la función con return (el equivalente a break en funciones)
-    if [ "$CONFIRMAR" = "0" ]; then
-        echo "Operación cancelada."
-        sleep 1
-        return 
+while true; do
+    opciones
+    read -e -p "   Nombre del nuevo usuario: " NUEVO_USER
+
+
+    if [ $NUEVO_USER = "exit" ]; then
+       exit 
     fi
 
-    # Si no eligió 1, y escribió cualquier otra cosa que no sea 1, también salimos por seguridad
-    if [ "$CONFIRMAR" != "1" ]; then
-        echo "Opción no válida."
-        sleep 1
-        return
-    fi
-
-    # --- A partir de aquí empieza tu lógica de creación ---
+    read -s -p "   Contraseña para $NUEVO_USER: " NUEVA_PASS
     echo ""
-    read -e -p "Nombre del nuevo usuario: " NUEVO_USER
-    read -e -p "Contraseña para $NUEVO_USER: " NUEVA_PASS
+    read -s -p "   Confirmar contraseña: " CONFIRM_PASS
+    echo ""
 
-    # Comprobación de existencia (la que añadimos antes)
-    if id "$NUEVO_USER" >/dev/null 2>&1; then
-        echo "Error: El usuario '$NUEVO_USER' ya existe."
+    if [ "$NUEVA_PASS" != "$CONFIRM_PASS" ]; then
+        echo "   [!] La contraseña no es la misma"
         sleep 2
+        continue 
     else
-        sudo adduser -D -G chat "$NUEVO_USER"
-        echo "$NUEVO_USER:$NUEVA_PASS" | sudo chpasswd
-        echo "Usuario $NUEVO_USER creado con éxito."
-        sleep 1
+        if id "$NUEVO_USER" >/dev/null 2>&1; then
+            echo "  [!] Error: El usuario '$NUEVO_USER' ya existe."
+            sleep 2
+        else
+            sudo adduser -D -G chat "$NUEVO_USER" > /dev/null 2>&1
+            echo "$NUEVO_USER:$NUEVA_PASS" | sudo chpasswd > /dev/null 2>&1
+            echo "   Usuario $NUEVO_USER creado con éxito."
+            sleep 2
+        fi
     fi
 done
-

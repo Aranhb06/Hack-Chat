@@ -1,12 +1,11 @@
-# Configuracion del usuario root
-
 # Paleta de colores {https://www.color-hex.com/color-palette/1017619 | https://www.color-hex.com/color-palette/1017620}
 
-echo "root:$root_password" | chpasswd
+# Configuracion del usuario root
+echo "root:$root_password" | chpasswd /dev/null 2>&1
 
 # Configuracion del usuario singup (inicio)
 if [ $unlock_singup = "yes" ]; then
-  passwd -u signup
+  passwd -u signup /dev/null 2>&1
 fi
 
 # Lanzamiento de los servicios
@@ -45,7 +44,7 @@ $R@i.~~ !     :   ~$$$$$B$$en:``
 printf '
       SERVIDOR LEVANTADO        
 \n'
-printf "Link\033[0m \033[38;2;86;182;194m- $(cat /var/lib/tor/other_hidden_service/hostname)\033[0m\n"
+printf "Link -\033[0m\033[38;2;86;182;194m $(cat /var/lib/tor/hidden_service/hostname)\033[0m\n"
 
 # Mantener conexion activa
 tail -f /dev/null

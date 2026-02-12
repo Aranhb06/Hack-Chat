@@ -49,7 +49,7 @@ mostrar_usuario() {
 
 # FUNCION CREAR USUARIOS
 crear_usuario() {
-  read -e -p "   Nombre del nuevo usuario: " NUEVO_USER
+  read -e -p "  Nombre del nuevo usuario: " NUEVO_USER
 
   # Si escribes exit sales
   if [ $NUEVO_USER = "exit" ]; then
@@ -57,14 +57,14 @@ crear_usuario() {
 
   # Siguiente paso para la creacion de usuarios
   else
-    read -s -p "   Contraseña para $NUEVO_USER: " NUEVA_PASS
+    read -s -p "  Contraseña para $NUEVO_USER: " NUEVA_PASS
     echo ""
-    read -s -p "   Confirmar contraseña: " CONFIRM_PASS
+    read -s -p "  Confirmar contraseña: " CONFIRM_PASS
     echo ""
 
     # Si la contraseña no es la misma mensaje de error
     if [ "$NUEVA_PASS" != "$CONFIRM_PASS" ]; then
-      printf "\033[38;2;224;108;117m   [!] La contraseña no es la misma\033[0m\n"
+      printf "\033[38;2;224;108;117m  [!] La contraseña no es la misma\033[0m\n"
       sleep 2
       continue 
 
@@ -73,14 +73,14 @@ crear_usuario() {
 
       # Si ya existe el usuario mensaje el usuario de error
       if id "$NUEVO_USER" >/dev/null 2>&1; then
-        printf "\033[38;2;224;108;117m   [!] Error: El usuario '$NUEVO_USER' ya existe.\033[0m\n"
+        printf "\033[38;2;224;108;117m  [!] Error: El usuario '$NUEVO_USER' ya existe.\033[0m\n"
         sleep 2
 
       # Creamos el usuario
       else
         sudo adduser -D -G chat "$NUEVO_USER" > /dev/null 2>&1
         echo "$NUEVO_USER:$NUEVA_PASS" | sudo chpasswd > /dev/null 2>&1
-        printf "\033[38;2;152;195;121m   Usuario $NUEVO_USER creado con éxito.\033[0m\n"
+        printf "\033[38;2;152;195;121m  Usuario $NUEVO_USER creado con éxito.\033[0m\n"
         sleep 2
       fi
     fi
@@ -89,7 +89,7 @@ crear_usuario() {
 
 # FUNCION ELIMINAR USUARIOS
 eliminar_usuario() {
-  read -p "   Nombre del usuario a eliminar: " USER_DEL
+  read -p "  Nombre del usuario a eliminar: " USER_DEL
 
   # Si escribes exit sales
   if [ $USER_DEL = "exit" ]; then
@@ -100,12 +100,12 @@ eliminar_usuario() {
     # Si el ususario existe lo borramos
     if id "$USER_DEL" > /dev/null 2>&1; then
       deluser "$USER_DEL" > /dev/null 2>&1
-      printf "\033[38;2;152;195;121m   Usuario $USER_DEL eliminado con éxito.\033[0m\n"
+      printf "\033[38;2;152;195;121m  Usuario $USER_DEL eliminado con éxito.\033[0m\n"
       sleep 1
 
     # Si no existe mensaje de error
     else
-      printf "\033[38;2;224;108;117m   [!] El usuario $USER_DEL no existe.\033[0m\n"
+      printf "\033[38;2;224;108;117m  [!] El usuario $USER_DEL no existe.\033[0m\n"
       sleep 1
     fi
   fi
@@ -135,10 +135,11 @@ activar_desactivar_singup() {
 # BUCLE PRINCIPAL DE SESION
 while true; do
   menu
-  read -p "   Introduce el indice: " menu_seleccion
+  read -n 1 -p "  Introduce el indice: " menu_seleccion
   case "$menu_seleccion" in
     #Salir del programa
     0)
+      clear
       break
     ;;
 
@@ -157,7 +158,7 @@ while true; do
     # Mostrar ususario
     3) 
       mostrar_usuario
-      read -p "   Presiona enter para salir " 
+      read -p "  Presiona enter para salir " 
     ;;
 
     # Activar el signup

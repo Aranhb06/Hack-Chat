@@ -1,4 +1,7 @@
 # Configuracion del usuario root
+
+# Paleta de colores {https://www.color-hex.com/color-palette/1017619 | https://www.color-hex.com/color-palette/1017620}
+
 echo "root:$root_password" | chpasswd
 
 # Configuracion del usuario singup (inicio)
@@ -11,10 +14,11 @@ fi
 tor -f /etc/tor/torrc >/dev/null 2>&1 &
 
 # Mensaje de espera
-echo "Esperando a que la red Tor se estabilice..."
+printf "\033[1mEsperando a que la red Tor se estabilice...\033[0m\n"
 sleep 10
 
 # Mensaje de bienvenida
+printf "\033[38;2;224;108;117m"
 echo '
                       :::!~!!!!!:.
                   .xUHWH!! !!?M88WHX:.
@@ -38,10 +42,10 @@ $R@i.~~ !     :   ~$$$$$B$$en:``
 ?MXT@Wx.~    :     ~"##*$$$$M~
 '
 
-echo '
+printf '
       SERVIDOR LEVANTADO        
-'
-echo "Link - $(cat /var/lib/tor/other_hidden_service/hostname)"
+\n'
+printf "Link\033[0m \033[38;2;86;182;194m- $(cat /var/lib/tor/other_hidden_service/hostname)\033[0m\n"
 
 # Mantener conexion activa
 tail -f /dev/null

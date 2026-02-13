@@ -35,7 +35,6 @@ Al arrancar el servicio, se generará una dirección `.onion` en los logs del co
 
 #### Opción A: Docker Run
 ```
-bash
 docker run \
   --name hack-chat-server \
   -e root_password="Tu_Contraseña_Segura" \
@@ -43,7 +42,7 @@ docker run \
   -v hack-chat_config:/etc \
   -v hack-chat_chat:/var/log/chat.log \
   -v hack-chat_tor:/var/lib/tor/hidden_service \
-  hack-chat:latest
+  aranhb06/hack-chat:latest
 ```
 
 #### Opción B: Docker Compose (Recomendado)
@@ -57,7 +56,7 @@ Crea un archivo .yalm con este nombre y pega el siguiente contenido:
 ```
 services:
   hack-chat:
-    image: hack-chat:latest
+    image: aranhb06/hack-chat:latest
     container_name: hack-chat-server
     restart: unless-stopped
     environment:

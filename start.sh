@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Permisos necesarios en caso de volumen (ERROR CRITICO)
+chown -R root:root /var/lib/tor/hidden_service /dev/null 2>&1
+chmod 700 /var/lib/tor/hidden_service /dev/null 2>&1
+
 # 1. Configuración de usuarios 
 echo "root:$root_password" | chpasswd /dev/null 2>&1
 
@@ -29,7 +33,7 @@ printf "\n\033[32m[+] Circuito establecido con éxito.\033[0m\n"
 
 # 5. Mensaje de bienvenida
 printf "\033[38;2;224;108;117m"
-cat << "EOF"
+echo ' 
                      :::!~!!!!!:.
                   .xUHWH!! !!?M88WHX:.
                 .X*#M@$!!  !X!M$$$$$$WWx:.
@@ -50,7 +54,7 @@ W$@@M!!! .!~~ !!      .:XUW$W!~ `"~:    :
 Wi.~!X$?!-~    : ?$$$B$Wu("**$RM!
 $R@i.~~ !     :   ~$$$$$B$$en:``
 ?MXT@Wx.~     :    ~"##*$$$$M~
-EOF
+'
 
 printf '\n      SERVIDOR LEVANTADO       \n\n'
 printf "Link -\033[0m \033[4;38;2;86;182;194m$(cat /var/lib/tor/hidden_service/hostname)\033[0m\n"

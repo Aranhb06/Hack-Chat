@@ -33,7 +33,7 @@ RUN chmod +x /usr/bin/signup.sh
 
 COPY ./scripts/chat.sh /usr/bin
 RUN chmod +x /usr/bin/chat.sh
-RUN touch /var/log/chat.log && chmod 666 /var/log/chat.log
+RUN mkdir /var/log/chat && touch /var/log/chat/chat.log && chmod 666 /var/log/chat/chat.log
 
 # Iniciar el servicio
 COPY start.sh /start.sh

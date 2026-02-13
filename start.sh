@@ -3,6 +3,7 @@
 # Permisos necesarios en caso de volumen (ERROR CRITICO)
 chown -R root:root /var/lib/tor/hidden_service /dev/null 2>&1
 chmod 700 /var/lib/tor/hidden_service /dev/null 2>&1
+chmod 777 /var/log/chat /dev/null 2>&1
 
 # 1. Configuración de usuarios 
 echo "root:$root_password" | chpasswd /dev/null 2>&1

@@ -2,7 +2,7 @@
 
 # Forzar compatibilidad
 export TERM=xterm-256color
-CHAT_LOG="/var/log/chat.log"
+CHAT_LOG="/var/log/chat/chat.log"
 
 # --- EL REINICIO ---
 # Cuando cambie la ventana, matamos al lector y reiniciamos el script

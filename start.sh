@@ -1,25 +1,36 @@
-# Paleta de colores {https://www.color-hex.com/color-palette/1017619 | https://www.color-hex.com/color-palette/1017620}
+#!/bin/bash
 
-# Configuracion del usuario root
+# 1. Configuración de usuarios 
 echo "root:$root_password" | chpasswd /dev/null 2>&1
 
-# Configuracion del usuario singup (inicio)
-if [ $unlock_singup = "yes" ]; then
-  passwd -u signup /dev/null 2>&1
+if [ "$unlock_singup" = "yes" ]; then
+    passwd -u signup /dev/null 2>&1
 fi
 
-# Lanzamiento de los servicios
-/usr/sbin/sshd     
-tor -f /etc/tor/torrc >/dev/null 2>&1 &
+# 2. Lanzamiento de servicios
+/usr/sbin/sshd
+tor -f /etc/tor/torrc > /tmp/tor.log 2>&1 &
 
-# Mensaje de espera
-printf "\033[1mEsperando a que la red Tor se estabilice...\033[0m\n"
-sleep 10
+# 3. Esperar a que se cree el log para evitar el error de grep
+printf "\033[1mIniciando sistemas...\033[0m\n"
+while [ ! -f /tmp/tor.log ]; do
+    sleep 0.5
+done
 
-# Mensaje de bienvenida
+# 4. Comprobación de circuito Tor
+printf "\033[1mEsperando confirmación de circuito...\033[0m\n"
+until grep -q "Bootstrapped 100% (done): Done" /tmp/tor.log; do
+    printf "\033[38;2;209;154;102m[.] Sincronizando con nodos... \033[0m\r"
+    sleep 2
+done
+
+# Limpiamos la línea de carga
+printf "\n\033[32m[+] Circuito establecido con éxito.\033[0m\n"
+
+# 5. Mensaje de bienvenida
 printf "\033[38;2;224;108;117m"
-echo '
-                      :::!~!!!!!:.
+cat << "EOF"
+                     :::!~!!!!!:.
                   .xUHWH!! !!?M88WHX:.
                 .X*#M@$!!  !X!M$$$$$$WWx:.
                :!!!!!!?H! :!$!$$$$$$$$$$8X:
@@ -32,19 +43,17 @@ echo '
             :%`  ~#$$$m:        ~!~ ?$$$$$$
           :!`.-   ~T$$$$8xx.  .xWW- ~""##*"
 .....   -~~:<` !    ~?T#$$@@W@*?$$      /`
-W$@@M!!! .!~~ !!     .:XUW$W!~ `"~:    :
-#"~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`
+W$@@M!!! .!~~ !!      .:XUW$W!~ `"~:    :
+#"~~`.:x%`!!  !H:    !WM$$$$Ti.: .!WUn+!`
 :::~:!!`:X~ .: ?H.!u "$$$B$$$!W:U!T$$M~
-.~~   :X@!.-~   ?@WTWo("*$$$W$TH$! `
+.~~   :X@!.-~    ?@WTWo("*$$$W$TH$! `
 Wi.~!X$?!-~    : ?$$$B$Wu("**$RM!
 $R@i.~~ !     :   ~$$$$$B$$en:``
-?MXT@Wx.~    :     ~"##*$$$$M~
-'
+?MXT@Wx.~     :    ~"##*$$$$M~
+EOF
 
-printf '
-      SERVIDOR LEVANTADO        
-\n'
-printf "Link -\033[0m\033[38;2;86;182;194m $(cat /var/lib/tor/hidden_service/hostname)\033[0m\n"
+printf '\n      SERVIDOR LEVANTADO       \n\n'
+printf "Link -\033[0m \033[4;38;2;86;182;194m$(cat /var/lib/tor/hidden_service/hostname)\033[0m\n"
 
-# Mantener conexion activa
-tail -f /dev/null
+# 6. Mantener vivo
+wait

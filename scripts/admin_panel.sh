@@ -52,7 +52,7 @@ crear_usuario() {
   read -e -p "  Nombre del nuevo usuario: " NUEVO_USER
 
   # Si escribes exit sales
-  if [ $NUEVO_USER = "exit" ]; then
+  if [ "$NUEVO_USER" = "exit" ]; then
     continue 
 
   # Siguiente paso para la creacion de usuarios
@@ -173,6 +173,8 @@ while true; do
 
     # Enseriop has introducido mal un numero
     *)
+      printf "\033[38;2;224;108;117m  [!] Error: Opcion no valida.\033[0m\n"
+      sleep 1.5
     ;;
   esac
 done

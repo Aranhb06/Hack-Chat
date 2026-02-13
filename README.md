@@ -46,11 +46,11 @@ docker run \
   hack-chat:latest
 ```
 
-### Opción 2: Docker Compose (Recomendado)
+#### Opción B: Docker Compose (Recomendado)
 
 Utilizar **Docker Compose** es la forma más eficiente de gestionar el servicio, ya que permite definir volúmenes, redes y variables de entorno en un solo archivo estructurado.
 
-#### 1. Archivo `docker-compose.yml`
+##### 1. Archivo `docker-compose.yml`
 
 Crea un archivo .yalm con este nombre y pega el siguiente contenido:
 

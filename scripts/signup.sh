@@ -21,7 +21,8 @@ while true; do
 
 
     # Si se escribe exit se sale
-    if [ $NUEVO_USER = "exit" ]; then
+    if [ "$NUEVO_USER" = "exit" ]; then
+       clear 
        exit 
     fi
 

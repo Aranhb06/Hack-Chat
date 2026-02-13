@@ -40,7 +40,7 @@ docker run \
   -e root_password="Tu_Contraseña_Segura" \
   -e unlock_singup=yes \
   -v hack-chat_config:/etc \
-  -v hack-chat_chat:/var/log/chat.log \
+  -v hack-chat_chat:/var/log \
   -v hack-chat_tor:/var/lib/tor/hidden_service \
   aranhb06/hack-chat:latest
 ```
@@ -66,7 +66,7 @@ services:
       - unlock_singup=no
     volumes:
       - hack-chat_config:/etc
-      - hack-chat_chat:/var/log/chat.log
+      - hack-chat_chat:/var/log
       - hack-chat_tor:/var/lib/tor/hidden_service
 
 volumes:

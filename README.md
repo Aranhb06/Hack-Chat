@@ -76,3 +76,13 @@ volumes:
   hack-chat_tor:
 ```
 
+---
+
+## ⚖️ Licencia
+
+Este proyecto está bajo la licencia **GNU GPLv3**. Esto significa que eres libre de usarlo, estudiarlo y modificarlo, siempre que cualquier derivado mantenga la misma licencia abierta.
+
+Puedes leer el texto completo aquí:  
+👉 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)
+
+---

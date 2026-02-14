@@ -45,9 +45,7 @@ while true; do
     printf "\033[${INPUT_LINE};1H"
     
     # Secuencias del promt
-    GREEN=$'\001\e[1;32m\002'
-    RESET=$'\001\e[0m\002'
-    PRE_PROMPT="${GREEN}[$USER]: ${RESET}"
+    PRE_PROMPT="[$USER]: "
 
     # Usamos read -e con el prompt limpio
     if read -e -p "$PRE_PROMPT" msn; then

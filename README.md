@@ -36,13 +36,13 @@ Al arrancar el servicio, se generará una dirección `.onion` en los logs del co
 ┏━━━━━━━━━LOGICA DEL SERVIDOR / USUARIOS━━━━━━━━━━┓
 ┃                                                 ┃
 ┃ ┌──SCRIPTS / BASH──┐       ┌──SCRIPTS / BASH──┐ ┃
-┃ │[PANEL DE GESTION]├─────▷│      [CHAT]      │ ┃
-┃ │  root / signup   ├─────▷│    Grupo Chat    │ ┃
+┃ │[PANEL DE GESTION]├──────▷│      [CHAT]      │ ┃
+┃ │  root / signup   ├──────▷│    Grupo Chat    │ ┃
 ┃ └──────────────────┘       └───┬───────────┬──┘ ┃
 ┃                                │           │    ┃
 ┃ ┌────ARCHIVO / .log─────┐      │           │    ┃
-┃ │[PERSISTENCIA DE DATOS]│◁────┘           │    ┃
-┃ │   /var/chat/chat.log  │◁────────────────┘    ┃
+┃ │[PERSISTENCIA DE DATOS]│◁─────┘           │    ┃
+┃ │   /var/chat/chat.log  │◁─────────────────┘    ┃
 ┃ └───────────────────────┘                       ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
